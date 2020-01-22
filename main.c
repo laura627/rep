@@ -29,7 +29,7 @@ char* builtin_str[] = {
   "ls"
 };
 
-int (*builtin_func[]) (char**) = {
+int (builtin_func[]) (char*) = {
   &lsh_cd,
   &lsh_help,
   &lsh_exit,
@@ -45,6 +45,7 @@ int lsh_num_builtins() {
 /*
   Builtin function implementations.
 */
+
 
 int lsh_ls(char** args)
 {
@@ -229,20 +230,14 @@ char** lsh_split_line(char* line) {
 	return tokens;
 }
 
-#define clear() printf("\033[H\033[J")
-#define BUF_SIZE 200
-char* prompt;
 void lsh_loop(void)
 {
-	clear();
 	char* line;
 	char** args;
 	int status;
 
 	do {
-		prompt = getcwd(prompt, BUF_SIZE);
-		char* str = " $ ";
-		printf(" %s %s", prompt, str);
+		printf("user@linux:~$ ");
 		line = lsh_read_line();
 		args = lsh_split_line(line);
 		status = lsh_execute(args);
