@@ -29,7 +29,7 @@ char* builtin_str[] = {
   "ls"
 };
 
-int (builtin_func[]) (char*) = {
+int (*builtin_func[]) (char**) = {
   &lsh_cd,
   &lsh_help,
   &lsh_exit,
